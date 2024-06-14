@@ -6,6 +6,7 @@ public class FoquitoScript : MonoBehaviour
 {
     public GameObject[] colors;
     public int currentLightIndex =-1;
+    int cont_act = 0;
 
     void Start()
     {
@@ -21,9 +22,14 @@ public class FoquitoScript : MonoBehaviour
     public void ActivateNextLight()
     {
         currentLightIndex++;
+        if (cont_act == 3)
+        {
+            Destroy(gameObject);
+        }
         if (currentLightIndex >= colors.Length)
         {
             currentLightIndex = 0;
+            cont_act += 1;
         }
         DeactivateAllLights();
         colors[currentLightIndex].SetActive(true);
@@ -35,6 +41,7 @@ public class FoquitoScript : MonoBehaviour
         if (currentLightIndex < 0)
         {
             currentLightIndex = colors.Length - 1;
+
         }
         DeactivateAllLights();
         colors[currentLightIndex].SetActive(true);
